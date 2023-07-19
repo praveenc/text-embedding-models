@@ -76,6 +76,16 @@ You can install these packages using pip:
 pip install metaflow transformers torch sklearn numpy
 ```
 
+## Streamlit App
+
+For an interactive application using `intfloat/e5-base-v2`  for encoding and displaying top k hits on sagemaker faqs is available at [streamlit_sagemaker_faqs_e5.py](streamlit_sagemaker_faqs_e5.py).
+
+To run this app:
+
+```shell
+streamlit run streamlit_sagemaker_faqs_e5.py
+```
+
 ## Summary
 
 This script provides a way to evaluate various Hugging Face text embedding models on a given corpus and set of queries. It handles variations in the encoding methods required by different models and calculates cosine similarity scores between the query and corpus embeddings. The results are printed as a table for each model, showing the top 3 hits for each query. The script is implemented using Metaflow, a human-friendly Python library that helps scientists and engineers build and manage real-life data science projects.

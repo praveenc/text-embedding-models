@@ -1,4 +1,5 @@
-What is Amazon SageMaker Neo?
-Which models does SageMaker Neo support?
-Which hardware platforms does SageMaker Neo support
-In which Regions is SageMaker Neo available
+What the max memory size for a serverless endpoint?
+what containers are supported for serverless endpoints?
+what are cold starts in serverless endpoints?
+what are features not supported by serverless endpoints?
+What are some of the provisioned concurrency metrics?

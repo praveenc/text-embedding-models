@@ -166,7 +166,6 @@ class EvaluateTextEmbeddingModelsFlow(FlowSpec):
             headers = ["Query", "hit_text", "cosine_similarity_score"]
             current.card.append(Table(rows, headers))
 
-    def format_data_for_model(self):
         """
         Format the data for the card
 
