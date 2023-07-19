@@ -1,0 +1,134 @@
+Q: What is Amazon DynamoDB?
+
+DynamoDB is a fast and flexible nonrelational database service for any scale. DynamoDB enables customers to offload the administrative burdens of operating and scaling distributed databases to AWS so that they don’t have to worry about hardware provisioning, setup and configuration, throughput capacity planning, replication, software patching, or cluster scaling.
+
+Q: What does DynamoDB manage on my behalf?
+
+DynamoDB takes away one of the main stumbling blocks of scaling databases: the management of database software and the provisioning of the hardware needed to run it. You can deploy a nonrelational database in a matter of minutes. DynamoDB automatically scales throughput capacity to meet workload demands, and partitions and repartitions your data as your table size grows. Also, DynamoDB synchronously replicates data across three facilities in an AWS Region, giving you high availability and data durability.
+
+Q: What is the consistency model of DynamoDB?
+
+When reading data from DynamoDB, users can specify whether they want the read to be eventually consistent or strongly consistent:
+
+Eventually consistent reads (the default) – The eventual consistency option maximizes your read throughput. However, an eventually consistent read might not reflect the results of a recently completed write. All copies of data usually reach consistency within a second. Repeating a read after a short time should return the updated data.
+Strongly consistent reads — In addition to eventual consistency, DynamoDB also gives you the flexibility and control to request a strongly consistent read if your application, or an element of your application, requires it. A strongly consistent read returns a result that reflects all writes that received a successful response before the read.
+ACID transactions – DynamoDB transactions provide developers atomicity, consistency, isolation, and durability (ACID) across one or more tables within a single AWS account and region. You can use transactions when building applications that require coordinated inserts, deletes, or updates to multiple items as part of a single logical business operation.
+Getting started
+
+Q: What kind of query functionality does DynamoDB support?
+
+DynamoDB supports GET/PUT operations by using a user-defined primary key. The primary key is the only required attribute for items in a table. You specify the primary key when you create a table, and it uniquely identifies each item. DynamoDB also provides flexible querying by letting you query on nonprimary key attributes using global secondary indexes and local secondary indexes.
+
+A primary key can be either a single-attribute partition key or a composite partition-sort key. A single-attribute partition key could be, for example, UserID. Such a single attribute partition key would allow you to quickly read and write data for an item associated with a given user ID.
+
+DynamoDB indexes a composite partition-sort key as a partition key element and a sort key element. This multipart key maintains a hierarchy between the first and second element values. For example, a composite partition-sort key could be a combination of UserID (partition) and Timestamp (sort). Holding the partition key element constant, you can search across the sort key element to retrieve items. Such searching would allow you to use the Query API to, for example, retrieve all items for a single UserID across a range of time stamps.
+
+Q: How do I update and query data items with DynamoDB?
+
+After you have created a table using the DynamoDB console or CreateTable API, you can use the PutItem or BatchWriteItem APIs to insert items. Then, you can use the GetItem, BatchGetItem, or, if composite primary keys are enabled and in use in your table, the Query API to retrieve the items you added to the table.
+
+Q: Can DynamoDB be used by applications running on any operating system?
+
+Yes. DynamoDB is a fully managed cloud service that you access via API. Applications running on any operating system (such as Linux, Windows, iOS, Android, Solaris, AIX, and HP-UX) can use DynamoDB. We recommend using the AWS SDKs to get started with DynamoDB.
+
+Q: How am I charged for my use of DynamoDB?
+
+Each DynamoDB table has provisioned read-throughput and write-throughput associated with it. You are billed by the hour for that throughput capacity. Note that you are charged by the hour for the throughput capacity, whether or not you are sending requests to your table. If you would like to change your table’s provisioned throughput capacity, you can do so using the AWS Management Console, the UpdateTable API, or the PutScalingPolicy API for auto scaling. Also, DynamoDB charges for data storage as well as the standard internet data transfer fees.
+
+To learn more about DynamoDB pricing, see the DynamoDB pricing page.
+
+Q: What is the maximum throughput I can provision for a single DynamoDB table?
+
+Maximum throughput per DynamoDB table is practically unlimited. For information about the limits in place, see Limits in DynamoDB. If you want to request a limit increase, contact Amazon.
+
+Q: What is the minimum throughput I can provision for a single DynamoDB table?
+
+The smallest provisioned throughput you can request is 1 write capacity unit and 1 read capacity unit for both auto scaling and manual throughput provisioning. Such provisioning falls within the free tier which allows for 25 units of write capacity and 25 units of read capacity. The free tier applies at the account level, not the table level. In other words, if you add up the provisioned capacity of all your tables, and if the total capacity is no more than 25 units of write capacity and 25 units of read capacity, your provisioned capacity would fall into the free tier.
+
+Q: What are DynamoDB table classes?
+
+DynamoDB offers two table classes designed to help you optimize for cost. The DynamoDB Standard table class is the default, and recommended for the vast majority of workloads. The DynamoDB Standard-Infrequent Access (DynamoDB Standard-IA) table class is optimized for tables that store data that is accessed infrequently, where storage is the dominant cost. Each table is associated with a table class and each table class offers a different pricing for data storage as well as read and write requests. You can select the most cost-effective table class based on your table's storage requirements and data access patterns.
+
+Q: When should I use DynamoDB Standard-IA?
+
+DynamoDB Standard-IA helps you reduce your DynamoDB total costs for tables that store infrequently accessed data such as applications’ logs, old social media posts, e-commerce order history, and past gaming achievements. If storage is your dominant table cost— storage cost exceeds 50 percent of the cost of throughput (reads and writes) consistently—then the DynamoDB Standard-IA table class is the most economical choice for you. Learn more about DynamoDB Standard-IA pricing in the DynamoDB pricing page.
+
+Q: How do DynamoDB Standard-IA tables work with existing DynamoDB features and integrate with other AWS
+services?
+DynamoDB Standard-IA tables are no different than DynamoDB Standard tables in supporting all existing DynamoDB features including global tables, secondary indexes, on-demand backups, point-in-time recovery (PITR), and Amazon DynamoDB Accelerator (DAX). DynamoDB Standard-IA tables also have built-in integration with other AWS services in the same way as DynamoDB Standard tables. For example, you can monitor the performance of your DynamoDB Standard-IA tables using Amazon CloudWatch, use AWS CloudFormation templates to provision and manage your DynamoDB Standard-IA tables, stream your change data records to Amazon Kinesis Data Streams, and export your DynamoDB Standard-IA tables data to Amazon Simple Storage Service (Amazon S3).
+
+Q: What are the basic DynamoDB components?
+
+The following are the basic DynamoDB components:
+
+Tables – Similar to other database systems, DynamoDB stores data in tables. A table is a collection of data. For example, see the example table called People that you could use to store personal contact information about friends, family, or anyone else of interest. You could also have a Cars table to store information about vehicles that people drive.
+
+Items – Each table contains zero or more items. An item is a group of attributes that is uniquely identifiable among all of the other items. In a People table, each item represents a person. For a Cars table, each item represents one vehicle. Items in DynamoDB are similar in many ways to rows, records, or tuples in other database systems. In DynamoDB, there is no limit to the number of items you can store in a table.
+
+Attributes – Each item is composed of one or more attributes. An attribute is a fundamental data element, something that does not need to be broken down any further. For example, an item in a People table contains attributes called PersonID, LastName, FirstName, and so on. For a Department table, an item might have attributes such as DepartmentID, Name, Manager, and so on. Attributes in DynamoDB are similar in many ways to fields or columns in other database systems.
+
+Q: Reserved words and special characters
+
+DynamoDB has a list of reserved words and special characters. For a complete list of reserved words in DynamoDB, see Reserved words in DynamoDB. Also, the following characters have special meaning in DynamoDB: # (hash) and : (colon).
+
+Although DynamoDB allows you to use these reserved words and special characters for names, we recommend that you avoid doing so because you have to define placeholder variables whenever you use these names in an expression. For more information, see Expression attribute names in DynamoDB.
+
+Q: Data types
+
+DynamoDB supports many different data types for attributes within a table. They can be categorized as follows:
+
+Scalar Types – A scalar type can represent exactly one value. The scalar types are number, string, binary, Boolean, and null.
+
+Document Types – A document type can represent a complex structure with nested attributes, such as you would find in a JSON document. The document types are list and map.
+
+Set Types – A set type can represent multiple scalar values. The set types are string set, number set, and binary set.
+
+Q: Data types
+
+When you create a table or a secondary index, you must specify the names and data types of each primary key attribute (partition key and sort key). Furthermore, each primary key attribute must be defined as type string, number, or binary.
+
+DynamoDB is a NoSQL database and is schemaless. This means that, other than the primary key attributes, you don't have to define any attributes or data types when you create tables. By comparison, relational databases require you to define the names and data types of each column when you create a table.
+
+Q: Read consistency
+
+
+Amazon DynamoDB reads data from tables, local secondary indexes (LSIs), global secondary indexes (GSIs), and streams. For more information, see Core components of Amazon DynamoDB. Both tables and LSIs provide two read consistency options: eventually consistent (default) and strongly consistent reads. All reads from GSIs and streams are eventually consistent.
+
+When your application writes data to a DynamoDB table and receives an HTTP 200 response (OK), that means the write completed successfully and has been durably persisted. DynamoDB provides read-committed isolation and ensures that read operations always return committed values for an item. The read will never present a view to the item from a write which did not ultimately succeed. Read-committed isolation does not prevent modifications of the item immediately after the read operation.
+
+Q: Eventually Consistent Reads
+
+
+Eventually consistent is the default read consistent model for all read operations. When issuing eventually consistent reads to a DynamoDB table or an index, the responses may not reflect the results of a recently completed write operation. If you repeat your read request after a short time, the response should return the more recent item. Eventually consistent reads are supported on tables, local secondary indexes, and global secondary indexes. Also note that all reads from a DynamoDB stream are also eventually consistent.
+
+Eventually consistent reads are half the cost of strongly consistent reads. For more information, see Amazon DynamoDB pricing.
+
+Q: Strongly Consistent Reads
+
+Read operations such as GetItem, Query, and Scan provide an optional ConsistentRead parameter. If you set ConsistentRead to true, DynamoDB returns a response with the most up-to-date data, reflecting the updates from all prior write operations that were successful. Strongly consistent reads are only supported on tables and local secondary indexes. Strongly consistent reads from a global secondary index or a DynamoDB stream are not supported.
+
+Q: Global tables read consistency
+
+DynamoDB also supports global tables for multi-active and multi-Region replication. A global table is composed of multiple replica tables in different AWS Regions. Any change made to any item in any replica table is replicated to all the other replicas within the same global table, typically within a second, and are eventually consistent. For more information, see Consistency and conflict resolution.
+
+Q: On-demand mode
+
+Amazon DynamoDB on-demand is a flexible billing option capable of serving thousands of requests per second without capacity planning. DynamoDB on-demand offers pay-per-request pricing for read and write requests so that you pay only for what you use.
+
+When you choose on-demand mode, DynamoDB instantly accommodates your workloads as they ramp up or down to any previously reached traffic level. If a workload’s traffic level hits a new peak, DynamoDB adapts rapidly to accommodate the workload. Tables that use on-demand mode deliver the same single-digit millisecond latency, service-level agreement (SLA) commitment, and security that DynamoDB already offers. You can choose on-demand for both new and existing tables and you can continue using the existing DynamoDB APIs without changing code.
+
+Q: When is On-Demand mode a good option
+
+On-demand mode is a good option if any of the following are true: You create new tables with unknown workloads. You have unpredictable application traffic. You prefer the ease of paying for only what you use.
+
+The request rate is only limited by the DynamoDB throughput default table quotas, but it can be raised upon request. For more information, see Throughput default quotas.
+
+Q: Read request units and write request units
+
+For on-demand mode tables, you don't need to specify how much read and write throughput you expect your application to perform. DynamoDB charges you for the reads and writes that your application performs on your tables in terms of read request units and write request units.
+
+DynamoDB read requests can be either strongly consistent, eventually consistent, or transactional.
+
+A strongly consistent read request of an item up to 4 KB requires one read request unit.
+An eventually consistent read request of an item up to 4 KB requires one-half read request unit.
+A transactional read request of an item up to 4 KB requires two read request units.

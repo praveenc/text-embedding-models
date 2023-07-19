@@ -1,0 +1,34 @@
+Q: What makes a service or application serverless?
+
+We founded the concept of serverless on the following tenets: no server management, pay-for-value services, continuous scaling, and built-in fault tolerance. When adopting a serverless service or building a serverless architecture, these ideals are fundamental to serverless strategy.
+
+Q: What is a serverless-first strategy?
+
+A serverless-first strategy is the organizational dedication to prioritizing the tenets of serverless in your applications, operations, and development cycles. A serverless developer or serverless-first company works to build using these tenets first and foremost, but knows that it doesn’t work for every workload. Non-serverless technologies are incorporated as supporting architecture when needed.
+
+Q: As a developer, why should I use serverless?
+
+A serverless approach will allow you to minimize undifferentiated work around managing servers, infrastructure, and the parts of the application that add less value to your customers. Serverless can make it easier to deliver new features in applications, launch experiments, and improve your team delivery velocity, while also providing a pay-for-value cost model.
+
+Q: What is Function as a Service (FaaS)?
+
+FaaS is the compute layer of a serverless architecture, which is AWS Lambda. In serverless applications, Lambda is typically used to connect services, transform data, and implement business logic. Most serverless applications consist of more than Lambda, so FaaS is typically only one part of a serverless workload.
+
+Q: How does serverless lower costs?
+
+If you use on-premises servers or EC2 instances, you are likely not using 100% of the compute capacity at all times. Many customers only use 10–20% of the available capacity in their EC2 fleet at any point in time. This average is also affected by high availability and Disaster Recovery requirements, which typically result in idle servers waiting for traffic from failovers. In the on-demand AWS Lambda compute model, you pay per request and by duration of time. Additionally, serverless architectures can lower the overall Total Cost of Ownership (TCO) since many of the networking, security, and DevOps management tasks are included in the cost of the service.
+Q: How do I maintain the security posture I need?
+
+AWS has a shared security model where AWS is responsible for security of the cloud and customers are responsible for security in the cloud. With serverless, AWS manages many additional layers of infrastructure, including operating systems and networking. If you follow the principles of least privilege and the best practices of securing a serverless application, you can secure each resource with granular permissions using familiar tools like AWS IAM, which can help give you a robust security posture for your serverless applications.
+
+Q: What is an event-driven architecture?
+
+An event-driven architecture uses messages, or events, to trigger and communicate between decoupled services and is common in modern applications built with microservices. Events contain information about a change in a system’s state, such as a new order or a completed payment. Focusing on events helps avoid tight-coupling and can promote greater flexibility and extensibility for applications, which in turn helps improve feature velocity and agility for your developer teams.
+
+Q: What is application integration?
+
+Application integration on AWS is a suite of services that enable communication between decoupled components within microservices, distributed systems, and serverless applications.
+
+Q: What is messaging in the context of serverless applications?
+
+Event-driven architectures communicate across services using messages. Messages are lightweight JSON objects that typically contain event details. AWS provides Amazon SQS, Amazon SNS, and Amazon EventBridge as serverless messaging services to help with routing messages at scale. These services provide queues, message fan-out capabilities, event buses, content filtering, and other powerful features.
